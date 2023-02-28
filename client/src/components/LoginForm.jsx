@@ -2,7 +2,6 @@ import { useState } from "react";
 import * as yup from "yup";
 import { useFormik } from "formik";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router";
 import { setLoggedIn } from "state";
 import {
   Box,
@@ -10,6 +9,7 @@ import {
   Button,
   InputAdornment,
   IconButton,
+  useTheme,
 } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
@@ -49,8 +49,8 @@ const newUserValidationSchema = yup.object({
 });
 
 const LoginForm = () => {
+  const theme = useTheme();
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const loginForm = useFormik({
     initialValues: {
@@ -89,7 +89,11 @@ const LoginForm = () => {
   const handleChangeForm = () => setIsLoginForm((form) => !form);
 
   return (
-    <Box backgroundColor="rgba(0, 0, 0, 0.25)" borderRadius="1rem" p="1rem">
+    <Box
+      backgroundColor={theme.palette.primary[700]}
+      borderRadius="1rem"
+      p="1rem"
+    >
       {isLoginForm ? (
         <form onSubmit={loginForm.handleSubmit} method="POST">
           <Box display="flex" alignItems="center" gap=".5rem" m=".5rem">
