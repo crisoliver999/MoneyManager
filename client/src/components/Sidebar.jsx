@@ -8,7 +8,7 @@ import {
   ListItem,
   ListItemIcon,
   ListItemText,
-  Typography,
+  Divider,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import navItems from "consts/navItems";
@@ -45,29 +45,24 @@ const Sidebar = ({ drawerWidth, isSidebarOpen, setIsSidebarOpen }) => {
             </IconButton>
           </Box>
           <List>
-            {navItems.map(({ text, icon }) => {
+            {navItems.map(({ text, icon, path }) => {
               if (!icon) {
-                return (
-                  <Typography key={text} sx={{ m: "2.25rem 0 1rem 3rem" }}>
-                    {text}
-                  </Typography>
-                );
+                return <Divider key={text} />;
               }
-              const lcText = text.toLowerCase();
               return (
                 <ListItem key={text} disablePadding>
                   <ListItemButton
                     onClick={() => {
-                      navigate(`/${lcText}`);
-                      setActive(lcText);
+                      navigate(path);
+                      setActive(path);
                     }}
                     sx={{
                       backgroundColor:
-                        active === lcText
+                        active === path
                           ? theme.palette.secondary[300]
                           : "transparent",
                       color:
-                        active === lcText
+                        active === path
                           ? theme.palette.primary[600]
                           : theme.palette.secondary[100],
                     }}
@@ -76,7 +71,7 @@ const Sidebar = ({ drawerWidth, isSidebarOpen, setIsSidebarOpen }) => {
                       sx={{
                         ml: "2rem",
                         color:
-                          active === lcText
+                          active === path
                             ? theme.palette.primary[600]
                             : theme.palette.secondary[200],
                       }}
@@ -84,7 +79,7 @@ const Sidebar = ({ drawerWidth, isSidebarOpen, setIsSidebarOpen }) => {
                       {icon}
                     </ListItemIcon>
                     <ListItemText primary={text}>
-                      {active === lcText && (
+                      {active === path && (
                         <ChevronRightOutlined sx={{ ml: "auto" }} />
                       )}
                     </ListItemText>

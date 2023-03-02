@@ -3,6 +3,7 @@ import { Outlet } from "react-router";
 import { Box } from "@mui/material";
 import Navbar from "components/Navbar";
 import Sidebar from "components/Sidebar";
+import SpeedMenu from "components/SpeedMenu";
 
 const Layout = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -19,6 +20,7 @@ const Layout = () => {
           isSidebarOpen={isSidebarOpen}
           setIsSidebarOpen={setIsSidebarOpen}
         />
+        <SpeedMenu />
         <Outlet />
       </Box>
     </Box>
