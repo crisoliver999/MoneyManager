@@ -1,9 +1,12 @@
-import React from 'react'
+import { Box } from "@mui/material";
+import DashboardAccountsOverview from "components/DashboardAccountsOverview";
 
 const Dashboard = () => {
   return (
-    <div>Dashboard</div>
-  )
-}
+    <Box>
+      <DashboardAccountsOverview />
+    </Box>
+  );
+};
 
-export default Dashboard
+export default Dashboard;
